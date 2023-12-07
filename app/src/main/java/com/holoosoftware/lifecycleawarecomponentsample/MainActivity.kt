@@ -17,26 +17,8 @@ class MainActivity : AppCompatActivity() {
             )
         }
         setContentView(frameLayout)
-        videoPlayer = VideoPlayerExo(this, frameLayout)
+
+        videoPlayer = VideoPlayerExo(this, lifecycle, frameLayout)
         videoPlayer.play(Uri.parse("asset:///video_demo.mp4"))
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (!videoPlayer.player.isPlaying) {
-            videoPlayer.player.play()
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        if (videoPlayer.player.isPlaying) {
-            videoPlayer.player.pause()
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        videoPlayer.player.release()
     }
 }
